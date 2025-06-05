@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@media print {
+    /* Hide elements not needed in print, like the print button itself and the toggle */
+    .print-button-container, .no-print, .calculator-toggle, .reset-button {
+      display: none !important;
+    }
+    /* Ensure the main container expands to fit content */
+    .max-w-4xl {
+      max-width: 100% !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .shadow-lg, .rounded-lg {
+      box-shadow: none !important;
+      border-radius: 0 !important;
+    }
+    /* Ensure the table container doesn't hide overflow */
+    .overflow-x-auto { /* This class is now used for print only, but the actual overflow is handled by overflow-x-hidden */
+      overflow-x: visible !important;
+      width: 100% !important;
+    }
+    /* Make the table itself fit the page */
+    .min-w-full {
+      width: 100% !important;
+      min-width: 100% !important;
+      table-layout: fixed !important; /* Helps with column width distribution */
+    }
+    /* Adjust font size for better print readability */
+    body {
+      font-size: 10pt; /* Smaller font for print */
+    }
+    /* Reduce padding/margins for print to maximize content space */
+    .p-4, .p-6, .p-8 {
+      padding: 0.5rem !important;
+    }
+    .px-6, .py-4, .py-3 {
+      padding: 0.25rem 0.5rem !important;
+    }
+    /* Ensure borders are visible */
+    .divide-y {
+      border-collapse: collapse;
+    }
+    .divide-y > * + * {
+      border-top-width: 1px !important;
+      border-color: #e5e7eb !important; /* Ensure border color is visible */
+    }
+    /* Make sure inputs and buttons don't break layout */
+    input, button {
+      box-sizing: border-box;
+    }
+    /* Force column widths to be proportional for print */
+    table th:nth-child(1), table td:nth-child(1) { width: 30%; } /* Item */
+    table th:nth-child(2), table td:nth-child(2) { width: 5%; text-align: center; } /* Checkbox */
+    table th:nth-child(3), table td:nth-child(3) { width: 20%; } /* Cost per m2 */
+    table th:nth-child(4), table td:nth-child(4) { width: 15%; } /* Wastage % */
+    table th:nth-child(5), table td:nth-child(5) { width: 30%; text-align: right; } /* Nett Size x Cost */
+  
+    /* Adjust specific elements for print */
+    .bg-blue-50 { background-color: #e0f2fe !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .bg-gray-200 { background-color: #e5e7eb !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .bg-blue-100 { background-color: #dbeafe !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+  
